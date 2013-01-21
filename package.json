@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": {
     "hopjs": "bin/hopjs",
-    "hopjs-browser-test": "bin/hopjs-browser-test",
+    "hopjs-browser-test": "bin/hopjs-browser-test"
   },
   "keywords": [
     "remote",
@@ -17,7 +17,6 @@
     "url": "https://github.com/celer/hopjs-remote.git"
   },
   "dependencies": {
-    "hopjs": ">=0.0.8",
     "request": "~2.12.0",
     "colors": "~0.6.0-1",
     "optimist": "~0.3.5"
