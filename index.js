@@ -1,5 +1,1 @@
-module.exports=function(Hop){
-	require('./lib/remote')(Hop);
-}
-
-
+module.exports=require('./lib/remote');
