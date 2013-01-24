@@ -1,1 +1,1 @@
-patch -p0 < combined_stream.patch 
+patch -N -p0 < combined_stream.patch 
