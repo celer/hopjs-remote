@@ -1,2 +1,0 @@
-patch -N -p0 < combined_stream.patch 
-exit 0

@@ -1,6 +1,6 @@
 {
   "name": "hopjs-remote",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Remote API Helper and tools for Hopjs",
   "main": "index.js",
   "bin": {
@@ -8,7 +8,7 @@
     "hopjs-browser-test": "bin/hopjs-browser-test"
   },
 	"scripts": {
-		"postinstall":"./patch"
+		"postinstall":"node patch.js"
 	},
   "keywords": [
     "remote",
