@@ -7,6 +7,9 @@
     "hopjs": "bin/hopjs",
     "hopjs-browser-test": "bin/hopjs-browser-test"
   },
+	"scripts": {
+		"postinstall":"node patch.js"
+	},
   "keywords": [
     "remote",
     "hopjs"

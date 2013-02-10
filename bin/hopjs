@@ -93,7 +93,7 @@ if(args.url){
             Hop.TestCase.results={ pass:0, fail:0};
             Hop.TestCase.prototype.testResult=function(taskIndex,method,input,err,response,testType,result){
               if(Hop.TestCase.lastTaskIndex!=taskIndex){
-                console.log("#"+(taskIndex+1),method);
+                console.log("\t#"+(taskIndex+1),method);
                 Hop.TestCase.lastTaskIndex=taskIndex;
               
                 if(args.testDetails){
@@ -105,15 +105,15 @@ if(args.url){
 									}
 									if(typeof input=="string" && input.length>100) input=input.substr(0,100)+"...";
 									if(typeof response=="string" && response.length>100) response=response.substr(0,100)+"...";
-                  console.log("\tInput",JSON.stringify(input));
-                  console.log("\tError",err);
-                  console.log("\tResult",JSON.stringify(response));
+                  console.log("\t\tInput",JSON.stringify(input));
+                  console.log("\t\tError",err);
+                  console.log("\t\tResult",JSON.stringify(response));
                   console.log();
                 } 
               }
 							var res = Hop.Tests[testType][result?"pass":"fail"];
 						
-              console.log("\t",(result?"P".green:"F".red),(result?res.green:res.red));
+              console.log("\t\t",(result?"P".green:"F".red),(result?res.green:res.red));
 
               Hop.TestCase.results[(result?"pass":"fail")]++;
             }
@@ -124,6 +124,7 @@ if(args.url){
               var run=function(){
                 if (toRun.length>0){
                   var testCase = toRun.shift();
+									console.log(("\nRunning :"+testCase+"\n").bold);
                   Hop.TestCase.run(testCase,function(){ 
                       Hop.TestCase.lastTaskIndex=-1;
                       run();
