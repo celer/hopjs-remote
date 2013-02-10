@@ -20,7 +20,7 @@
     "url": "https://github.com/celer/hopjs-remote.git"
   },
   "dependencies": {
-    "request": "git://github.com/celer/request.git",
+    "request": "hopjs-request",
     "colors": "~0.6.0-1",
     "optimist": "~0.3.5",
     "hopjs-common": ">=0.0.5"
