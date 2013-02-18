@@ -20,6 +20,6 @@
     "hopjs-request": "~3.0.0",
     "colors": "~0.6.0-1",
     "optimist": "~0.3.5",
-    "hopjs-common": ">=0.0.5"
+    "hopjs-common": ">=0.0.7"
   }
 }
