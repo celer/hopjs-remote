@@ -1,6 +1,6 @@
 {
   "name": "hopjs-remote",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Remote API Helper and tools for Hopjs",
   "main": "index.js",
   "bin": {
@@ -17,9 +17,9 @@
     "url": "https://github.com/celer/hopjs-remote.git"
   },
   "dependencies": {
-    "hopjs-request": "~3.0.0",
     "colors": "~0.6.0-1",
     "optimist": "~0.3.5",
-    "hopjs-common": ">=0.0.8"
+    "hopjs-common": ">=0.0.8",
+    "request": "~2.27.0"
   }
 }
