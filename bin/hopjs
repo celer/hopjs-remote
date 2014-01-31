@@ -104,18 +104,32 @@ if(args.url){
                 urlOrService = url.resolve(args.url,urlOrService);
               }
 
+              if(/\/$/.test(urlOrService)){
+                
+                urlOrService+="api.json";
+                Hop.remoteAPI(urlOrService,function(err,service){
+                  if(err) return onComplete(err);
+                  for(var obj in service){
+                    api[obj]=service[obj];
+                  }
+                  return onComplete(null,api);
+                });
+  
+              } else {
 
-              request.get(urlOrService,function(err,ahr,data){
+                request.get(urlOrService,function(err,ahr,data){
 
-                if(err) return onComplete(err);
-                if(!data) return onComplete("Error loading service:"+urlOrService); 
-              
-       
-                eval(data);
- 
-                onComplete(null,data);    
+                  if(err) return onComplete(err);
+                  if(!data) return onComplete("Error loading service:"+urlOrService); 
+                
+         
+                  eval(data);
+   
+                  onComplete(null,data);    
 
-              }); 
+                }); 
+
+              }
             }
             Hop.TestCase.prototype.do=function(methodName,input,onComplete){
               var m = /(.*)\.([A-Za-z0-9]+)/.exec(methodName);
