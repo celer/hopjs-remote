@@ -1,6 +1,6 @@
 {
   "name": "hopjs-remote",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "Remote API Helper and tools for Hopjs",
   "main": "index.js",
   "bin": {
