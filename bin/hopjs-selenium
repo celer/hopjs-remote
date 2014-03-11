@@ -12,7 +12,8 @@ optimist=optimist.demand("url").describe("url","The url of the remote hopjs API 
 optimist=optimist.demand("browser").describe("browser","The browser to test with");
 optimist=optimist.demand("platform").describe("platform","The platform to test with");
 optimist=optimist.demand("version").describe("version","The version to test with");
-optimist=optimist.demand("name").describe("name","The name of this test");
+optimist=optimist.describe("name","The name of this test");
+optimist=optimist.describe("tunnelid","The tunnelid for this test for sauce labs connect");
 args = optimist.argv;
 
 var browser =  wd.remote(args.remote);
@@ -26,7 +27,7 @@ process.on("exit",function(){
 });
 
 
-browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url}, function(err){
+browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifer":args.tunnelid, tunnelid:args.tunnelid, tunnelidentifier:args.tunnelid }, function(err){
   if(err){
     console.error(err);
     browser.quit(function(){
