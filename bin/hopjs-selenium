@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+	
+var Hop = require("../lib/remote");
+var colors=require("colors");
+var path=require('path');
+var optimist = require('optimist');
+var common = require('hopjs-common');
+var wd = require('wd');
+
+optimist=optimist.demand("remote").describe("remote","The remote endpoint for selenium");
+optimist=optimist.demand("url").describe("url","The url of the remote hopjs API to use");
+optimist=optimist.demand("browser").describe("browser","The browser to test with");
+optimist=optimist.demand("platform").describe("platform","The platform to test with");
+optimist=optimist.demand("version").describe("version","The version to test with");
+optimist=optimist.demand("name").describe("name","The name of this test");
+args = optimist.argv;
+
+var browser =  wd.remote(args.remote);
+
+var url = Hop.getAPIResource(args.url,"doc");
+
+process.on("exit",function(){
+  browser.quit(function(){
+    process.exit();
+  });
+});
+
+
+browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url}, function(err){
+  if(err){
+    console.error(err);
+    browser.quit(function(){
+      process.exit(-1);
+    });
+  }
+  browser.get(url,function(err,res){
+      if(err){
+        console.error(err);
+        browser.quit(function(){
+          process.exit(-1);
+        });
+      }
+
+      browser.eval("Hop.TestCase.runInDialog('','#testModal')",function(err){
+        if(err){
+          console.error(err);
+          browser.quit(function(){
+            process.exit(-1);
+          });
+        }
+        waitForResults=function(){
+         setTimeout(function(){
+            browser.elementById("allTestResults",function(err,el){
+                if(el!=undefined){
+                  el.text(function(err,results){
+                    console.log(results);
+                    browser.quit(function(){
+                        var res =  /Passed:\s*(\d+)\s+Failed:\s*(\d+)/.exec(results);
+                        if(res[2]==0)
+                          process.exit(0);
+                        process.exit(-1);
+                    });
+                  }); 
+                } else {
+                  waitForResults();
+                }
+            });
+         },500);
+        }
+        waitForResults();
+      });
+  });
+});
