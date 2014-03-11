@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": {
     "hopjs": "bin/hopjs",
-    "hopjs-browser-test": "bin/hopjs-browser-test"
+    "hopjs-selenium": "bin/hopjs-selenium"
   },
   "keywords": [
     "remote",
