@@ -10,8 +10,9 @@ var wd = require('wd');
 optimist=optimist.demand("remote").describe("remote","The remote endpoint for selenium");
 optimist=optimist.demand("url").describe("url","The url of the remote hopjs API to use");
 optimist=optimist.demand("browser").describe("browser","The browser to test with");
-optimist=optimist.demand("platform").describe("platform","The platform to test with");
-optimist=optimist.demand("version").describe("version","The version to test with");
+optimist=optimist.describe("platform","The platform to test with");
+optimist=optimist.describe("version","The version to test with");
+optimist=optimist.describe("orientation","The orientation of the browser [landscape/portrait]");
 optimist=optimist.describe("name","The name of this test");
 optimist=optimist.describe("tunnelid","The tunnelid for this test for sauce labs connect");
 args = optimist.argv;
@@ -26,12 +27,14 @@ process.on("exit",function(){
   });
 });
 
-console.log(args.tunnelid);
 
-var tid = args.tunnelid;
+if(args.tunnelid){
+  var tid = args.tunnelid.toString();
+}
+args.version=args.version.toString();
 
 
-browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifier":tid  }, function(err){
+browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifier":tid, orientation:args.orientation||"portrait"  }, function(err){
   if(err){
     console.error(err);
     browser.quit(function(){
