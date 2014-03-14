@@ -26,8 +26,12 @@ process.on("exit",function(){
   });
 });
 
+console.log(args.tunnelid);
 
-browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifer":args.tunnelid, tunnelid:args.tunnelid, tunnelidentifier:args.tunnelid }, function(err){
+var tid = args.tunnelid;
+
+
+browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifier":tid  }, function(err){
   if(err){
     console.error(err);
     browser.quit(function(){
