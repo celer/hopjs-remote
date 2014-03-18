@@ -14,6 +14,8 @@ optimist=optimist.describe("platform","The platform to test with");
 optimist=optimist.describe("version","The version to test with");
 optimist=optimist.describe("orientation","The orientation of the browser [landscape/portrait]");
 optimist=optimist.describe("name","The name of this test");
+optimist=optimist.describe("build","The build of this test");
+optimist=optimist.describe("public","Make this test public");
 optimist=optimist.describe("tunnelid","The tunnelid for this test for sauce labs connect");
 args = optimist.argv;
 
@@ -34,7 +36,7 @@ if(args.tunnelid){
 args.version=args.version.toString();
 
 
-browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifier":tid, orientation:args.orientation||"portrait"  }, function(err){
+browser.init({ browserName:args.browser, platform:args.platform, version:args.version, name: args.name||url, "tunnel-identifier":tid, orientation:args.orientation||"portrait", public: args.public?true:false, build:args.build  }, function(err){
   if(err){
     console.error(err);
     browser.quit(function(){
