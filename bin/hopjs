@@ -18,6 +18,7 @@ optimist=optimist.describe("unitTest","Run the unit tests on the specified url")
 optimist=optimist.describe("testDetails","Show the details for each test");
 optimist=optimist.describe("perfLog","Where performance stats will be logged to, #now and #url can be subst in the filename");
 optimist=optimist.describe("compare","Compare some number of performance logs");
+optimist=optimist.describe("noColors","Don't use colors when displaying results");
 
 var args = optimist.argv;
 
@@ -181,9 +182,13 @@ if(args.url){
                   console.log();
                 } 
               }
-							var res = Hop.Tests[testType][result?"pass":"fail"];
-						
-              console.log("\t\t",(result?"P".green:"F".red),(result?res.green:res.red));
+							var res = (!Hop.Tests[testType]?testType:Hop.Tests[testType][result?"pass":"fail"]);
+					
+              if(args.noColors){
+                console.log("\t\t",(result?"PASS":"FAIL"),res);
+              } else { 	
+                console.log("\t\t",(result?"PASS".green:"FAIL".red),(result?res.green:res.red));
+              }
 
               Hop.TestCase.results[(result?"pass":"fail")]++;
             }
