@@ -1,6 +1,6 @@
 {
   "name": "hopjs-remote",
-  "version": "0.0.35",
+  "version": "1.0.0",
   "description": "Remote API Helper and tools for Hopjs",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,7 @@
     "remote",
     "hopjs"
   ],
-  "engine": "node 0.8.9",
+  "engine": "node 0.10.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/celer/hopjs-remote.git"
@@ -19,8 +19,9 @@
   "dependencies": {
     "colors": "~0.6.0-1",
     "optimist": "~0.3.5",
-    "hopjs-common": ">=0.0.8",
+    "hopjs-common": "^0.0.8",
     "request": "~2.27.0",
-    "wd": "^0.2.12"
+    "hopjs-workflow": "^1.0.0",
+    "semver": "^2.2.1"
   }
 }
